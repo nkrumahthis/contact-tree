@@ -122,6 +122,8 @@ def main():
         print("2. Delete Contact")
         print("3. Display Contacts")
 
+        choice = input("\nEnter your choice (1-3): ")
+
         if choice == '1':
             name = input("Enter name: ")
             phone = input("Enter phone number: ")
