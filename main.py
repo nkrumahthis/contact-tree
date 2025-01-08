@@ -54,6 +54,33 @@ class ContactManager:
             else:
                 self._add_recursive(node.right, contact)
     
+    def delete_contact(self, name):
+        """Delete a contact from the tree."""
+        self.root = self._delete_recursive(self.root, name.lower())
+    
+    def _delete_recursive(self, node, name):
+        """Helper method for recursive contact deletion."""
+        if node is None:
+            return None
+        
+        if name < node.contact.name.lower():
+            node.left = self._delete_recursive(node.left, name)
+        elif name > node.contact.name.lower():
+            node.right = self._delete_recursive(node.right, name)
+        else:
+            # Contact found, handle deletion
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            
+            # Node has two children
+            min_node = self._find_min(node.right)
+            node.contact = min_node.contact
+            node.right = self._delete_recursive(node.right, min_node.contact.name.lower())
+            self.count -= 1
+        
+        return node
 def main():
     """Main function to run the contact management system."""
     manager = ContactManager()
@@ -73,6 +100,7 @@ def main():
     while True:
         print("\nContact Management System")
         print("1. Add Contact")
+        print("2. Delete Contact")
 
         if choice == '1':
             name = input("Enter name: ")
@@ -84,6 +112,10 @@ def main():
             manager.add_contact(Contact(name, phone, email, category))
             print("Contact added successfully!")
         
+        elif choice == '2':
+            name = input("Enter name to delete: ")
+            manager.delete_contact(name)
+            print("Contact deleted if found.")
 
 if __name__ == "__main__":
     main()
