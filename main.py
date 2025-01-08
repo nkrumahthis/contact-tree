@@ -81,6 +81,24 @@ class ContactManager:
             self.count -= 1
         
         return node
+
+    def _display_recursive(self, node):
+        """Helper method for recursive contact display."""
+        if node:
+            self._display_recursive(node.left)
+            print(node.contact)
+            self._display_recursive(node.right)
+        
+    def display_contacts(self):
+        """Display all contacts in alphabetical order."""
+        if not self.root:
+            print("\nNo contacts found.")
+            return
+        
+        print("\nAll Contacts (Alphabetical Order):")
+        print("-" * 40)
+        self._display_recursive(self.root)
+
 def main():
     """Main function to run the contact management system."""
     manager = ContactManager()
@@ -101,6 +119,7 @@ def main():
         print("\nContact Management System")
         print("1. Add Contact")
         print("2. Delete Contact")
+        print("3. Display Contacts")
 
         if choice == '1':
             name = input("Enter name: ")
@@ -116,6 +135,9 @@ def main():
             name = input("Enter name to delete: ")
             manager.delete_contact(name)
             print("Contact deleted if found.")
-
+        
+        elif choice == '3':
+            manager.display_contacts()
+            
 if __name__ == "__main__":
     main()
