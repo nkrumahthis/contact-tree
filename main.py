@@ -132,7 +132,12 @@ class ContactManager:
 
     def delete_contact(self, name):
         """Delete a contact from the tree."""
+        initial_count = self.count
         self.root = self._delete_recursive(self.root, name.lower())
+        if self.count < initial_count:
+            self.save_contacts()
+            return True
+        return False
 
     def _delete_recursive(self, node, name):
         """Helper method for recursive contact deletion."""
@@ -159,6 +164,20 @@ class ContactManager:
             self.count -= 1
 
         return node
+
+    def _find_min(self, node):
+        """Find contact with minimum (alphabetically first) name."""
+        current = node
+        while current.left:
+            current = current.left
+        return current
+    
+    def _collect_contacts(self, node, contacts):
+        """Collect all contacts in-order."""
+        if node:
+            self._collect_contacts(node.left, contacts)
+            contacts.append(node.contact)
+            self._collect_contacts(node.right, contacts)
 
     def _display_recursive(self, node):
         """Helper method for recursive contact display."""
