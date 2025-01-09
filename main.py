@@ -221,8 +221,9 @@ def main():
         print("2. Find Contact")
         print("3. Delete Contacts")
         print("4. Display all Contacts")
+        print("5. Exit")
 
-        choice = input("\nEnter your choice (1-3): ")
+        choice = input("\nEnter your choice (1-5): ")
 
         if choice == "1":
             name = input("Enter name: ")
@@ -255,6 +256,13 @@ def main():
 
         elif choice == "4":
             manager.display_contacts()
+
+        elif choice == "5":
+            print("\nThank you for using the Contact Management System!")
+            break
+
+        else:
+            print("\nInvalid choice. Please try again.")
 
 
 if __name__ == "__main__":
