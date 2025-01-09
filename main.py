@@ -6,7 +6,9 @@ Date: 08-01-2024
 This program implements a phone contact management system using a Binary Search Tree
 for efficient contact storage and retrieval. Features include:
 - Adding and deleting contacts
-- Displaying contacts in alphabetical order
+- Searching contacts by name
+- Contact categorization
+- Automatic saving/loading of contacts
 """
 
 import json
