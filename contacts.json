@@ -1,0 +1,32 @@
+[
+	{
+		"name": "John Smith",
+		"phone": "123-456-7890",
+		"email": "john@email.com",
+		"category": "family"
+	},
+	{
+		"name": "Alice Johnson",
+		"phone": "234-567-8901",
+		"email": "alice@email.com",
+		"category": "work"
+	},
+	{
+		"name": "Bob Wilson",
+		"phone": "345-678-9012",
+		"email": "bob@email.com",
+		"category": "friends"
+	},
+	{
+		"name": "Carol Brown",
+		"phone": "456-789-0123",
+		"email": "carol@email.com",
+		"category": "work"
+	},
+	{
+		"name": "David Lee",
+		"phone": "567-890-1234",
+		"email": "david@email.com",
+		"category": "family"
+	}
+]
