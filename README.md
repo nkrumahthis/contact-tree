@@ -250,25 +250,10 @@ Chrome uses BSTs to:
 - Handle bookmarks
 - Manage those autocomplete suggestions
 
-### 10. Database indexing
+### 10. Database indexing (Kinda)
 
 The reason it is fairly fast to retrieve records from a million rows in a table could be because of BST indexing. So databases don't use regular BSTs - they use this fancy cousin called B-trees. Think of it like a BST that got an upgrade.
 
-```mermaid
-graph TD
-    subgraph "Regular BST"
-        A1[50] --> B1[25]
-        A1 --> C1[75]
-        B1 --> D1[12]
-        B1 --> E1[37]
-    end
-
-    subgraph "B-tree"
-        A2[30 | 60] --> B2[10 | 20]
-        A2 --> C2[40 | 50]
-        A2 --> D2[70 | 80]
-    end
-```
 
 ## Why This Matters Though
 
