@@ -129,6 +129,20 @@ class ContactManager:
                 node.right = ContactNode(contact)
             else:
                 self._add_recursive(node.right, contact)
+                
+    def find_contact(self, name):
+        """Search for a contact by exact name match."""
+        return self._find_recursive(self.root, name.lower())
+    
+    def _find_recursive(self, node, name):
+        """Helper method for recursive contact search."""
+        if node is None or node.contact.name.lower() == name:
+            return node
+        
+        if name < node.contact.name.lower():
+            return self._find_recursive(node.left, name)
+
+        return self._find_recursive(node.right, name)
 
     def delete_contact(self, name):
         """Delete a contact from the tree."""
@@ -204,13 +218,17 @@ def main():
     while True:
         print("\nContact Management System")
         print("1. Add Contact")
-        print("2. Delete Contact")
-        print("3. Display Contacts")
+        print("2. Find Contact")
+        print("3. Delete Contacts")
+        print("4. Display all Contacts")
 
         choice = input("\nEnter your choice (1-3): ")
 
         if choice == "1":
             name = input("Enter name: ")
+            if manager.find_contact(name):
+                print("\nA contact with this name already exists!")
+                continue
             phone = input("Enter phone number: ")
             email = input("Enter email (optional): ")
             category = input("Enter category (family/friends/work/general): ")
@@ -220,11 +238,22 @@ def main():
             print("Contact added successfully!")
 
         elif choice == "2":
-            name = input("Enter name to delete: ")
-            manager.delete_contact(name)
-            print("Contact deleted if found.")
+            name = input("Enter name to find: ")
+            contact_node = manager.find_contact(name)
+            if contact_node:
+                print("\nContact found:")
+                print(contact_node.contact)
+            else:
+                print("\nContact not found")
 
         elif choice == "3":
+            name = input("Enter name to delete: ")
+            if manager.delete_contact(name):
+                print("Contact deleted successfully.")
+            else:
+                print("Contact not found.")
+
+        elif choice == "4":
             manager.display_contacts()
 
 
